@@ -7,13 +7,14 @@
 //
 
 #import "FilesystemExplorerAppDelegate.h"
-#import "RootViewController.h"
+#import "DirectoryViewController.h"
 
 
 @implementation FilesystemExplorerAppDelegate
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize directoryViewController;
 
 
 #pragma mark -
@@ -25,6 +26,8 @@
 	
 	[window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
+    // populate the first fiew
+    self.directoryViewController.directoryPath = NSHomeDirectory();
 }
 
 

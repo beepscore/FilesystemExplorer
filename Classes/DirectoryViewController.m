@@ -34,7 +34,7 @@
     [directoryContents retain];
 }
 
-#pragma mark -     
+#pragma mark -
 - (void)dealloc {
     [directoryContents release];
     directoryContents = nil;
@@ -121,17 +121,26 @@
     return cell;
 }
 
-/*
- // Override to support row selection in the table view.
- - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- // Navigation logic may go here -- for example, create and push another view controller.
- // AnotherViewController *anotherViewController = [[AnotherViewController alloc] initWithNibName:@"AnotherView" bundle:nil];
- // [self.navigationController pushViewController:anotherViewController animated:YES];
- // [anotherViewController release];
- }
- */
-
+// Override to support row selection in the table view.
+- (void)tableView:(UITableView *)tableView 
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // cast return to NSString
+    NSString *selectedFile = (NSString *)[directoryContents objectAtIndex:indexPath.row];
+    BOOL isDir;
+    NSString *selectedPath = [directoryPath stringByAppendingPathComponent:selectedFile];
+    if ([[NSFileManager defaultManager]
+         fileExistsAtPath:selectedPath isDirectory:&isDir] && isDir) {
+        DirectoryViewController *directoryViewController =
+        [[DirectoryViewController alloc]
+         initWithNibName:@"DirectoryViewController"
+         bundle:nil];
+        [[self navigationController]
+         pushViewController:directoryViewController animated:YES];
+        directoryViewController.directoryPath = selectedPath;
+        [directoryViewController release];
+    }
+}
 
 /*
  // Override to support conditional editing of the table view.

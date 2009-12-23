@@ -24,13 +24,13 @@
 
 /*
  // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+ - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+ if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+ // Custom initialization
+ }
+ return self;
+ }
+ */
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -39,29 +39,75 @@
     [self setupAsynchronousContentLoad];
 }
 
-// ref Dudney sec 8.5
-- (void)setupAsynchronousContentLoad {
-    // open a stream to filePath
-    NSInputStream *inputStream = [[NSInputStream alloc] initWithFileAtPath:filePath];
-    [inputStream setDelegate:self];
-    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
-                           forMode:NSDefaultRunLoopMode];
-    [inputStream open];
-    [inputStream release];
+- (void)appendTextToView:(NSString *)textToAppend {
+    fileContentsTextView.text = [NSString stringWithFormat:@"%@%@",
+                                 fileContentsTextView.text, textToAppend];
 }
 
-- (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode {
-    
+// ref Dudney sec 8.5
+- (void)setupAsynchronousContentLoad {
+    [asynchInputStream release];
+    // open a stream to filePath
+    asynchInputStream = [[NSInputStream alloc] initWithFileAtPath:filePath];
+    [asynchInputStream setDelegate:self];
+    [asynchInputStream scheduleInRunLoop:[NSRunLoop currentRunLoop]
+                                 forMode:NSDefaultRunLoopMode];
+    [asynchInputStream open];
+}
+
+- (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
+    NSInputStream *inputStream = (NSInputStream *) theStream;
+    switch (streamEvent) {
+        case NSStreamEventHasBytesAvailable: {
+            NSInteger maxLength = 128;
+            uint8_t readBuffer[maxLength];
+            NSInteger bytesRead = [inputStream read:readBuffer maxLength:maxLength];
+            if (bytesRead > 0) {
+                NSString *bufferString = [[NSString alloc]
+                                          initWithBytesNoCopy:readBuffer
+                                          length:bytesRead
+                                          encoding:NSUTF8StringEncoding
+                                          freeWhenDone:NO];
+                [self appendTextToView:bufferString];
+                [bufferString release];
+            }
+            break;
+        } // case: bytes available
+            
+        case NSStreamEventErrorOccurred: {
+            // dialog the error
+            NSError *error = [theStream streamError];
+            if (error != NULL) {
+                UIAlertView *errorAlert = [[UIAlertView alloc]
+                                           initWithTitle:[error localizedDescription]
+                                           message:[error localizedFailureReason]
+                                           delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+                [errorAlert show];
+                [errorAlert release];
+            }
+            [inputStream removeFromRunLoop:[NSRunLoop currentRunLoop]
+                                   forMode:NSDefaultRunLoopMode];
+            [theStream close];
+            break;
+        }
+        case NSStreamEventEndEncountered: {
+            [inputStream removeFromRunLoop:[NSRunLoop currentRunLoop]
+                                   forMode:NSDefaultRunLoopMode];
+            [theStream close];
+        }
+    }
 }
 
 
 /*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+ // Override to allow orientations other than the default portrait orientation.
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations
+ return (interfaceOrientation == UIInterfaceOrientationPortrait);
+ }
+ */
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -73,6 +119,13 @@
 - (void)viewDidUnload {
 	// Release any retained subviews of the main view.
 	// e.g. self.myOutlet = nil;
+}
+
+- (void)viewWillDisappear: (BOOL) animated {
+    [asynchInputStream removeFromRunLoop:[NSRunLoop mainRunLoop]
+                                 forMode:NSDefaultRunLoopMode];
+    [asynchInputStream close];
+    [super viewWillDisappear:animated];
 }
 
 @end

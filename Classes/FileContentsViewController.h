@@ -11,10 +11,12 @@
 @interface FileContentsViewController : UIViewController {
     NSString *filePath;
     UITextView *fileContentsTextView;
+    NSInputStream *asynchInputStream;
 }
 @property (nonatomic, retain) NSString *filePath;
 
+- (void)appendTextToView:(NSString *)textToAppend;
 - (void)setupAsynchronousContentLoad;
-- (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode;
+- (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent;
 
 @end

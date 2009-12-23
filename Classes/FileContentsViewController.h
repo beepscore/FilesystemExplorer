@@ -10,7 +10,7 @@
 
 @interface FileContentsViewController : UIViewController {
     NSString *filePath;
-    UITextView *fileContentsTextView;
+    IBOutlet UITextView *fileContentsTextView;
     NSInputStream *asynchInputStream;
 }
 @property (nonatomic, retain) NSString *filePath;

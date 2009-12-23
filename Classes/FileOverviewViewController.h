@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface FileOverviewViewController : UITableViewController {
+@interface FileOverviewViewController : UIViewController {
 
 #pragma mark Instance variables
 NSString *filePath;
@@ -18,9 +18,9 @@ UILabel *fileSizeLabel;
 UILabel *fileModifiedLabel;    
 }
 @property (nonatomic, retain) NSString *filePath;
-@property (nonatomic, retain) UILabel *fileNameLabel;
-@property (nonatomic, retain) UILabel *fileSizeLabel;
-@property (nonatomic, retain) UILabel *fileModifiedLabel;
+@property (nonatomic, retain) IBOutlet UILabel *fileNameLabel;
+@property (nonatomic, retain) IBOutlet UILabel *fileSizeLabel;
+@property (nonatomic, retain) IBOutlet UILabel *fileModifiedLabel;
 
 
 - (IBAction)readFileContents;

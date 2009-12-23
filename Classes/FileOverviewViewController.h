@@ -10,12 +10,12 @@
 
 
 @interface FileOverviewViewController : UIViewController {
-
+    
 #pragma mark Instance variables
-NSString *filePath;
-UILabel *fileNameLabel;
-UILabel *fileSizeLabel;
-UILabel *fileModifiedLabel;    
+    NSString *filePath;
+    UILabel *fileNameLabel;
+    UILabel *fileSizeLabel;
+    UILabel *fileModifiedLabel;    
 }
 @property (nonatomic, retain) NSString *filePath;
 @property (nonatomic, retain) IBOutlet UILabel *fileNameLabel;

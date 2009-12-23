@@ -40,8 +40,9 @@
 #pragma mark Memory management
 
 - (void)dealloc {
-	[navigationController release];
-	[window release];
+    self.directoryViewController = nil;
+	self.navigationController = nil;
+	self.window = nil;
 	[super dealloc];
 }
 

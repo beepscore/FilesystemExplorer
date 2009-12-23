@@ -7,12 +7,14 @@
 //
 
 #import "DirectoryViewController.h"
-
+#import "FileOverviewViewController.h"
 
 @implementation DirectoryViewController
 
 #pragma mark Instance variables, properties, accessors
-@synthesize directoryPath;
+-(NSString *)directoryPath {
+    return directoryPath;
+}
 
 // override synthesized setter in order to load directory contents
 - (void)setDirectoryPath:(NSString *)aDirectoryPath {
@@ -26,6 +28,7 @@
     self.title = pathTitle;
 }
 
+// ????: where is directoryContents first allocated? in the nib?
 // directoryContents is an ivar, not a property. Use this method to set it.
 - (void)loadDirectoryContents {
     [directoryContents release];
@@ -128,17 +131,28 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // cast return to NSString
     NSString *selectedFile = (NSString *)[directoryContents objectAtIndex:indexPath.row];
     BOOL isDir;
-    NSString *selectedPath = [directoryPath stringByAppendingPathComponent:selectedFile];
+    NSString *selectedPath = [self.directoryPath stringByAppendingPathComponent:selectedFile];
+    
     if ([[NSFileManager defaultManager]
          fileExistsAtPath:selectedPath isDirectory:&isDir] && isDir) {
-        DirectoryViewController *directoryViewController =
+        DirectoryViewController *directoryViewController = 
         [[DirectoryViewController alloc]
          initWithNibName:@"DirectoryViewController"
          bundle:nil];
+        
         [[self navigationController]
          pushViewController:directoryViewController animated:YES];
         directoryViewController.directoryPath = selectedPath;
         [directoryViewController release];
+    } else {
+        FileOverviewViewController *fileOverviewViewController =
+        [[FileOverviewViewController alloc] 
+         initWithNibName:@"FileOverviewView"
+         bundle:nil];
+        [[self navigationController] pushViewController:fileOverviewViewController
+                                               animated:YES];
+        fileOverviewViewController.filePath = selectedPath;
+        [fileOverviewViewController release];
     }
 }
 

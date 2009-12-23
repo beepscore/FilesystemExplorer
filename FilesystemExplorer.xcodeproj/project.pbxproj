@@ -15,6 +15,7 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* DirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* DirectoryViewController.m */; };
 		28F335F11007B36200424DE2 /* DirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* DirectoryViewController.xib */; };
+		DE0B191510E1DFEE00F86EA3 /* FileOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B191310E1DFEE00F86EA3 /* FileOverviewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		28F335F01007B36200424DE2 /* DirectoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectoryViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* FilesystemExplorer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FilesystemExplorer-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		DE0B191210E1DFEE00F86EA3 /* FileOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOverviewViewController.h; sourceTree = "<group>"; };
+		DE0B191310E1DFEE00F86EA3 /* FileOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOverviewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +53,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DE0B191210E1DFEE00F86EA3 /* FileOverviewViewController.h */,
+				DE0B191310E1DFEE00F86EA3 /* FileOverviewViewController.m */,
 				28C286DF0D94DF7D0034E888 /* DirectoryViewController.h */,
 				28C286E00D94DF7D0034E888 /* DirectoryViewController.m */,
 				1D3623240D0F684500981E51 /* FilesystemExplorerAppDelegate.h */,
@@ -171,6 +176,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* FilesystemExplorerAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* DirectoryViewController.m in Sources */,
+				DE0B191510E1DFEE00F86EA3 /* FileOverviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

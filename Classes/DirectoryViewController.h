@@ -6,7 +6,7 @@
 //  Copyright Beepscore LLC 2009. All rights reserved.
 //
 
-@interface DirectoryViewController : UITableViewController {
+@interface DirectoryViewController : UITableViewController <UIActionSheetDelegate> {
     
 #pragma mark Instance variables
     // directoryContents is an array of NSStrings representing files or directories
@@ -16,5 +16,7 @@
 @property (nonatomic, retain) NSString *directoryPath;
 
 - (void)loadDirectoryContents;
+- (void)createNewFile;
+- (void)createNewDirectory;
 
 @end

@@ -45,15 +45,67 @@
     [super dealloc];
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    UIBarButtonItem *addButton = [[[UIBarButtonItem alloc]
+                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                   target:self
+                                   action:@selector(showAddOptions)] autorelease];
+    self.navigationItem.rightBarButtonItem = addButton;
+}
 
-/*
- - (void)viewDidLoad {
- [super viewDidLoad];
- 
- // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
- // self.navigationItem.rightBarButtonItem = self.editButtonItem;
- }
- */
+- (void)showAddOptions {
+    NSString *sheetTitle = [[NSString alloc]
+                            initWithFormat:@"Edit \"%@\"",
+                            [directoryPath lastPathComponent]];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:sheetTitle
+                                  delegate:self
+                                  cancelButtonTitle:@"Cancel"
+                                  destructiveButtonTitle:NULL
+                                  otherButtonTitles:@"New File", @"New Directory", NULL];
+    [actionSheet showInView:self.view];
+    [sheetTitle release];
+    [actionSheet release];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet
+clickedButtonAtIndex:(NSInteger) buttonIndex {
+    if (0 == buttonIndex)
+        [self createNewFile];
+    else if (1 == buttonIndex)
+        [self createNewDirectory];
+}
+
+- (void)createNewFile{
+    
+}
+
+- (void)createNewDirectory {
+    BOOL canWrite = [[NSFileManager defaultManager]
+                     isWritableFileAtPath:self.directoryPath];
+    if (! canWrite) {
+        NSString *alertMessage = @"Cannot write to this direcotry";
+        UIAlertView *cantWriteAlert = [[UIAlertView alloc] initWithTitle:@"Not Permitted" 
+                                                                 message:alertMessage
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+        [cantWriteAlert show];
+        [cantWriteAlert release];
+        return;
+    }
+    CreateDirectoryViewController *createDirectoryViewController =
+    [[CreateDirectoryViewController alloc]
+     initWithNibName:@"CreateDirectoryView"
+     bundle:nil];
+    createDirectoryViewController.parentDirectoryPath = directoryPath;
+    createDirectoryViewController.directoryViewController = self;
+    createDirectoryViewController.title = @"Create directory";
+    [[self navigationController]
+     pushViewController:createDirectoryViewController animated:YES];
+    [createDirectoryViewController release];
+}
 
 /*
  - (void)viewWillAppear:(BOOL)animated {

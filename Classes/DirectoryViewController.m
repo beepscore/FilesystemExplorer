@@ -218,20 +218,31 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
  */
 
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source.
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }   
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
- }   
- }
- */
 
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView 
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle 
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // handle a delete swipe
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSString *selectedFile = (NSString *) [directoryContents objectAtIndex:indexPath.row];
+        NSString *selectedPath = [directoryPath stringByAppendingPathComponent:selectedFile];
+        BOOL canWrite = [[NSFileManager defaultManager]
+                         isWritableFileAtPath:selectedPath];
+        if (! canWrite) {
+            // show a UIAlert saying path isn't writable
+            NSError *err = nil;
+            if (! [[NSFileManager defaultManager] removeItemAtPath:selectedPath error:&err]) {
+                // show a UIAlert saying cannot delete
+            }
+        } else {
+            NSArray *deletedPaths = [NSArray arrayWithObject:indexPath];
+            [self loadDirectoryContents];
+            [self.tableView deleteRowsAtIndexPaths:deletedPaths
+                                  withRowAnimation:YES];
+        }
+    }  
+}
 
 /*
  // Override to support rearranging the table view.

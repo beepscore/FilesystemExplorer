@@ -20,6 +20,8 @@
 		DE0B191510E1DFEE00F86EA3 /* FileOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B191310E1DFEE00F86EA3 /* FileOverviewViewController.m */; };
 		DE3F3E3B10E1F7A1002E1D7C /* FileContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3F3E3910E1F7A1002E1D7C /* FileContentsViewController.m */; };
 		DE3F3E3C10E1F7A1002E1D7C /* FileContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE3F3E3A10E1F7A1002E1D7C /* FileContentsView.xib */; };
+		DE521B3810E471B300A3E870 /* CreateFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE521B3610E471B300A3E870 /* CreateFileViewController.m */; };
+		DE521B3910E471B300A3E870 /* CreateFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE521B3710E471B300A3E870 /* CreateFileView.xib */; };
 		DE75BC0910E1EF3400AA2E84 /* FileOverviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE75BC0810E1EF3400AA2E84 /* FileOverviewView.xib */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,9 @@
 		DE3F3E3810E1F7A1002E1D7C /* FileContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileContentsViewController.h; sourceTree = "<group>"; };
 		DE3F3E3910E1F7A1002E1D7C /* FileContentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileContentsViewController.m; sourceTree = "<group>"; };
 		DE3F3E3A10E1F7A1002E1D7C /* FileContentsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = FileContentsView.xib; path = Classes/FileContentsView.xib; sourceTree = "<group>"; };
+		DE521B3510E471B300A3E870 /* CreateFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateFileViewController.h; sourceTree = "<group>"; };
+		DE521B3610E471B300A3E870 /* CreateFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateFileViewController.m; sourceTree = "<group>"; };
+		DE521B3710E471B300A3E870 /* CreateFileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateFileView.xib; path = Classes/CreateFileView.xib; sourceTree = "<group>"; };
 		DE75BC0810E1EF3400AA2E84 /* FileOverviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FileOverviewView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,16 +70,18 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DE0B191210E1DFEE00F86EA3 /* FileOverviewViewController.h */,
-				DE0B191310E1DFEE00F86EA3 /* FileOverviewViewController.m */,
-				28C286DF0D94DF7D0034E888 /* DirectoryViewController.h */,
-				28C286E00D94DF7D0034E888 /* DirectoryViewController.m */,
-				1D3623240D0F684500981E51 /* FilesystemExplorerAppDelegate.h */,
-				1D3623250D0F684500981E51 /* FilesystemExplorerAppDelegate.m */,
-				DE3F3E3810E1F7A1002E1D7C /* FileContentsViewController.h */,
-				DE3F3E3910E1F7A1002E1D7C /* FileContentsViewController.m */,
 				DE08599210E4593400D11E71 /* CreateDirectoryViewController.h */,
 				DE08599310E4593400D11E71 /* CreateDirectoryViewController.m */,
+				DE521B3510E471B300A3E870 /* CreateFileViewController.h */,
+				DE521B3610E471B300A3E870 /* CreateFileViewController.m */,
+				28C286DF0D94DF7D0034E888 /* DirectoryViewController.h */,
+				28C286E00D94DF7D0034E888 /* DirectoryViewController.m */,
+				DE3F3E3810E1F7A1002E1D7C /* FileContentsViewController.h */,
+				DE3F3E3910E1F7A1002E1D7C /* FileContentsViewController.m */,
+				DE0B191210E1DFEE00F86EA3 /* FileOverviewViewController.h */,
+				DE0B191310E1DFEE00F86EA3 /* FileOverviewViewController.m */,
+				1D3623240D0F684500981E51 /* FilesystemExplorerAppDelegate.h */,
+				1D3623250D0F684500981E51 /* FilesystemExplorerAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -112,11 +119,12 @@
 			isa = PBXGroup;
 			children = (
 				DE08599410E4593400D11E71 /* CreateDirectoryView.xib */,
+				DE521B3710E471B300A3E870 /* CreateFileView.xib */,
 				28F335F01007B36200424DE2 /* DirectoryViewController.xib */,
-				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				DE3F3E3A10E1F7A1002E1D7C /* FileContentsView.xib */,
 				8D1107310486CEB800E47090 /* FilesystemExplorer-Info.plist */,
 				DE75BC0810E1EF3400AA2E84 /* FileOverviewView.xib */,
-				DE3F3E3A10E1F7A1002E1D7C /* FileContentsView.xib */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -185,6 +193,7 @@
 				DE75BC0910E1EF3400AA2E84 /* FileOverviewView.xib in Resources */,
 				DE3F3E3C10E1F7A1002E1D7C /* FileContentsView.xib in Resources */,
 				DE08599610E4593400D11E71 /* CreateDirectoryView.xib in Resources */,
+				DE521B3910E471B300A3E870 /* CreateFileView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +210,7 @@
 				DE0B191510E1DFEE00F86EA3 /* FileOverviewViewController.m in Sources */,
 				DE3F3E3B10E1F7A1002E1D7C /* FileContentsViewController.m in Sources */,
 				DE08599510E4593400D11E71 /* CreateDirectoryViewController.m in Sources */,
+				DE521B3810E471B300A3E870 /* CreateFileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

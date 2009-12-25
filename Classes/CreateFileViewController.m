@@ -7,6 +7,7 @@
 //
 
 #import "CreateFileViewController.h"
+#import "DirectoryViewController.h"
 
 
 @implementation CreateFileViewController
@@ -63,7 +64,48 @@
 
 // ref Dudney sec 8.7
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
-    //NSOutputStream *outputStream = (NSOutputStream*) theStream;
+    NSOutputStream *outputStream = (NSOutputStream*) theStream;
+    BOOL shouldClose = NO;
+    switch (streamEvent) {
+        case NSStreamEventHasSpaceAvailable: {
+            uint8_t outputBuf [1];
+            outputRange.length = 1;
+            [outputData getBytes:&outputBuf range:outputRange];
+            [outputStream write:outputBuf maxLength:1];
+            if (++outputRange.location == [outputData length]) {
+                shouldClose = YES;
+            }
+            break;
+        }
+        case NSStreamEventErrorOccurred: {
+            // dialog the error
+            NSError *error = [theStream streamError];
+            if (error != NULL) {
+                UIAlertView *errorAlert = [[UIAlertView alloc]
+                                           initWithTitle:[error localizedDescription]
+                                           message:[error localizedFailureReason]
+                                           delegate:nil
+                                           cancelButtonTitle:@"OK"
+                                           otherButtonTitles:nil];
+                [errorAlert show];
+                [errorAlert release];
+            }
+            shouldClose = YES;
+            break;
+        }
+        case NSStreamEventEndEncountered:
+            shouldClose = YES;
+    }
+    if (shouldClose) {
+        [outputStream removeFromRunLoop:[NSRunLoop currentRunLoop]
+                                forMode:NSDefaultRunLoopMode];
+        [theStream close];
+        
+        // force update of previous page and dismiss view
+        [directoryViewController loadDirectoryContents];
+        [directoryViewController.tableView reloadData];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

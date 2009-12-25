@@ -8,6 +8,7 @@
 
 #import "DirectoryViewController.h"
 #import "FileOverviewViewController.h"
+#import "CreateFileViewController.h"
 #import "CreateDirectoryViewController.h"
 
 @implementation DirectoryViewController
@@ -78,15 +79,37 @@ clickedButtonAtIndex:(NSInteger) buttonIndex {
         [self createNewDirectory];
 }
 
-- (void)createNewFile{
-    
+- (void)createNewFile {
+    BOOL canWrite = [[NSFileManager defaultManager]
+                     isWritableFileAtPath:self.directoryPath];
+    if (! canWrite) {
+        NSString *alertMessage = @"Cannot write to this file";
+        UIAlertView *cantWriteAlert = [[UIAlertView alloc] initWithTitle:@"Not Permitted" 
+                                                                 message:alertMessage
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+        [cantWriteAlert show];
+        [cantWriteAlert release];
+        return;
+    }
+    CreateFileViewController *createFileViewController =
+    [[CreateFileViewController alloc] initWithNibName:@"CreateFileView"
+                                               bundle:nil];
+    createFileViewController.parentDirectoryPath = directoryPath;
+    createFileViewController.directoryViewController = self;
+    createFileViewController.title = @"Create file";
+    [[self navigationController]
+     pushViewController:createFileViewController animated:YES];
+    [createFileViewController release];    
 }
 
+// ref Dudney sec 8.6 pg 154
 - (void)createNewDirectory {
     BOOL canWrite = [[NSFileManager defaultManager]
                      isWritableFileAtPath:self.directoryPath];
     if (! canWrite) {
-        NSString *alertMessage = @"Cannot write to this direcotry";
+        NSString *alertMessage = @"Cannot write to this directory";
         UIAlertView *cantWriteAlert = [[UIAlertView alloc] initWithTitle:@"Not Permitted" 
                                                                  message:alertMessage
                                                                 delegate:nil
@@ -97,9 +120,8 @@ clickedButtonAtIndex:(NSInteger) buttonIndex {
         return;
     }
     CreateDirectoryViewController *createDirectoryViewController =
-    [[CreateDirectoryViewController alloc]
-     initWithNibName:@"CreateDirectoryView"
-     bundle:nil];
+    [[CreateDirectoryViewController alloc] initWithNibName:@"CreateDirectoryView"
+                                                    bundle:nil];
     createDirectoryViewController.parentDirectoryPath = directoryPath;
     createDirectoryViewController.directoryViewController = self;
     createDirectoryViewController.title = @"Create directory";

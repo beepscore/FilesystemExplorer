@@ -15,6 +15,8 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* DirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* DirectoryViewController.m */; };
 		28F335F11007B36200424DE2 /* DirectoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* DirectoryViewController.xib */; };
+		DE08599510E4593400D11E71 /* CreateDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE08599310E4593400D11E71 /* CreateDirectoryViewController.m */; };
+		DE08599610E4593400D11E71 /* CreateDirectoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE08599410E4593400D11E71 /* CreateDirectoryView.xib */; };
 		DE0B191510E1DFEE00F86EA3 /* FileOverviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0B191310E1DFEE00F86EA3 /* FileOverviewViewController.m */; };
 		DE3F3E3B10E1F7A1002E1D7C /* FileContentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE3F3E3910E1F7A1002E1D7C /* FileContentsViewController.m */; };
 		DE3F3E3C10E1F7A1002E1D7C /* FileContentsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE3F3E3A10E1F7A1002E1D7C /* FileContentsView.xib */; };
@@ -35,6 +37,9 @@
 		28F335F01007B36200424DE2 /* DirectoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DirectoryViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* FilesystemExplorer-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "FilesystemExplorer-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		DE08599210E4593400D11E71 /* CreateDirectoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDirectoryViewController.h; sourceTree = "<group>"; };
+		DE08599310E4593400D11E71 /* CreateDirectoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDirectoryViewController.m; sourceTree = "<group>"; };
+		DE08599410E4593400D11E71 /* CreateDirectoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CreateDirectoryView.xib; path = Classes/CreateDirectoryView.xib; sourceTree = "<group>"; };
 		DE0B191210E1DFEE00F86EA3 /* FileOverviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileOverviewViewController.h; sourceTree = "<group>"; };
 		DE0B191310E1DFEE00F86EA3 /* FileOverviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileOverviewViewController.m; sourceTree = "<group>"; };
 		DE3F3E3810E1F7A1002E1D7C /* FileContentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileContentsViewController.h; sourceTree = "<group>"; };
@@ -68,6 +73,8 @@
 				1D3623250D0F684500981E51 /* FilesystemExplorerAppDelegate.m */,
 				DE3F3E3810E1F7A1002E1D7C /* FileContentsViewController.h */,
 				DE3F3E3910E1F7A1002E1D7C /* FileContentsViewController.m */,
+				DE08599210E4593400D11E71 /* CreateDirectoryViewController.h */,
+				DE08599310E4593400D11E71 /* CreateDirectoryViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -104,6 +111,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DE08599410E4593400D11E71 /* CreateDirectoryView.xib */,
 				28F335F01007B36200424DE2 /* DirectoryViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* FilesystemExplorer-Info.plist */,
@@ -176,6 +184,7 @@
 				28F335F11007B36200424DE2 /* DirectoryViewController.xib in Resources */,
 				DE75BC0910E1EF3400AA2E84 /* FileOverviewView.xib in Resources */,
 				DE3F3E3C10E1F7A1002E1D7C /* FileContentsView.xib in Resources */,
+				DE08599610E4593400D11E71 /* CreateDirectoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +200,7 @@
 				28C286E10D94DF7D0034E888 /* DirectoryViewController.m in Sources */,
 				DE0B191510E1DFEE00F86EA3 /* FileOverviewViewController.m in Sources */,
 				DE3F3E3B10E1F7A1002E1D7C /* FileContentsViewController.m in Sources */,
+				DE08599510E4593400D11E71 /* CreateDirectoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

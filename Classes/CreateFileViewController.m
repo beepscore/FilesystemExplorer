@@ -22,10 +22,10 @@
 #pragma mark -
 #pragma mark initializers / destructors
 - (void)dealloc {
-    self.fileNameField = nil;
-    self.fileContentsView = nil;
-    self.parentDirectoryPath = nil;
-    self.directoryViewController = nil;
+    [fileNameField release], fileNameField = nil;
+    [fileContentsView release], fileContentsView = nil;
+    [parentDirectoryPath release], parentDirectoryPath = nil;
+    [directoryViewController release], directoryViewController = nil;
     
     [super dealloc];
 }

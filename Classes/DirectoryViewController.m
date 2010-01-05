@@ -41,9 +41,8 @@
 
 #pragma mark -
 - (void)dealloc {
-    [directoryContents release];
-    directoryContents = nil;
-    self.directoryPath = nil;
+    [directoryContents release], directoryContents = nil;
+    [directoryPath release], directoryPath = nil;
     [super dealloc];
 }
 

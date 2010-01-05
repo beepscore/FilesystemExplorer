@@ -31,10 +31,10 @@
 }
 
 - (void)dealloc {
-    self.filePath = nil;
-    self.fileNameLabel = nil;
-    self.fileSizeLabel = nil;
-    self.fileModifiedLabel = nil;
+    [filePath release], filePath = nil;
+    [fileNameLabel release], fileNameLabel = nil;
+    [fileSizeLabel release], fileSizeLabel = nil;
+    [fileModifiedLabel release], fileModifiedLabel = nil;
     [super dealloc];
 }
 

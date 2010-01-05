@@ -17,7 +17,7 @@
 
 #pragma mark -
 - (void)dealloc {
-    self.filePath = nil;
+    [filePath release], filePath = nil;
     
     [super dealloc];
 }

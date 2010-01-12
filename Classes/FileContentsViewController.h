@@ -13,7 +13,7 @@
     IBOutlet UITextView *fileContentsTextView;
     NSInputStream *asynchInputStream;
 }
-@property (nonatomic, retain) NSString *filePath;
+@property (nonatomic, copy) NSString *filePath;
 
 - (void)appendTextToView:(NSString *)textToAppend;
 - (void)setupAsynchronousContentLoad;

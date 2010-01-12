@@ -17,7 +17,7 @@
 }
 #pragma mark -
 #pragma mark properties
-@property(nonatomic,retain)NSString *parentDirectoryPath;
+@property(nonatomic,copy)NSString *parentDirectoryPath;
 @property(nonatomic,retain)DirectoryViewController *directoryViewController;
 @property(nonatomic,retain)IBOutlet UITextField *directoryNameField;
 

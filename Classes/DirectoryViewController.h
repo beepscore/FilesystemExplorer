@@ -13,7 +13,7 @@
     NSArray *directoryContents;
     NSString *directoryPath;
 }
-@property (nonatomic, retain) NSString *directoryPath;
+@property (nonatomic, copy) NSString *directoryPath;
 
 - (void)loadDirectoryContents;
 - (void)createNewFile;

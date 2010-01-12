@@ -17,7 +17,7 @@
     UILabel *fileSizeLabel;
     UILabel *fileModifiedLabel;    
 }
-@property (nonatomic, retain) NSString *filePath;
+@property (nonatomic, copy) NSString *filePath;
 @property (nonatomic, retain) IBOutlet UILabel *fileNameLabel;
 @property (nonatomic, retain) IBOutlet UILabel *fileSizeLabel;
 @property (nonatomic, retain) IBOutlet UILabel *fileModifiedLabel;

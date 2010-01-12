@@ -23,7 +23,7 @@
 #pragma mark properties
 @property(nonatomic,retain)IBOutlet UITextField *fileNameField;
 @property(nonatomic,retain)IBOutlet UITextView *fileContentsView;
-@property(nonatomic,retain)NSString *parentDirectoryPath;
+@property(nonatomic,copy)NSString *parentDirectoryPath;
 @property(nonatomic,retain)DirectoryViewController *directoryViewController;
 
 - (void)setupAsynchronousContentSave;
